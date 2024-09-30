@@ -8,10 +8,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonReadWrite {
+public class JsonReadWrite extends ReadWrite {
 
-    // Methode zum Lesen der JSON-Daten aus der Datei
-    public static ArrayList<Word> readJSONData() {
+    public JsonReadWrite() {
+
+    }
+
+    @Override
+    public ArrayList<Word> read() {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Word> words = new ArrayList<>();
 
@@ -25,8 +29,8 @@ public class JsonReadWrite {
         return words; // Gebe die Liste von Wörtern zurück
     }
 
-    // Methode zum Schreiben der neuen Liste in die JSON-Datei (ersetzt vorhandene Inhalte)
-    public static void writeJSONData(ArrayList<Word> words) {
+    @Override
+    public void write(ArrayList<Word> words) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
