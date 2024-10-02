@@ -12,7 +12,6 @@ public class Main {
         Rechtschreibtrainer trainer = new Rechtschreibtrainer();
 
 
-
         for(int i = 0; i < 5; i++) {
             trainer.randomWord();
 
@@ -44,7 +43,22 @@ public class Main {
 
         }
 
-        JOptionPane.showMessageDialog(null, "Quiz abgeschlossen\n" + trainer.getCorrectAnswersTotal() + "/5 Fragen richtig", "Fertig", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Quiz abgeschlossen\n", "Fertig", JOptionPane.INFORMATION_MESSAGE);
+        for (Word word : trainer.getWords()) {
+            double correctAnswers = word.getCorrectAnswers();
+            double totalAnswers = word.getTotalAnswers();
+            double currentCorrectAnswers = word.getCurrentCorrectAnswers();
+            double currentTotalAnswers = word.getCurrentTotalAnswers();
+
+            double differenzAntworten = Math.abs((currentCorrectAnswers / currentTotalAnswers) - (correctAnswers / totalAnswers)) * 100;
+            differenzAntworten = Math.floor(differenzAntworten * 100) / 100;
+            if (currentCorrectAnswers/currentTotalAnswers >= correctAnswers/totalAnswers) {
+                JOptionPane.showMessageDialog(null, "Congratulations! Das Wort \"" + word.getName() + "\" hast du um " + differenzAntworten +  "% Prozent besser beantwortet", "Besser geübt!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Leider hast du das Wort \"" + word.getName() + "\" um " + differenzAntworten +  "% Prozent schlechter beantwortet", "Nächstes Mal!", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
     }
 
 
