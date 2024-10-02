@@ -52,5 +52,9 @@ public class Rechtschreibtrainer {
     public int getCorrectAnswersTotal() {
         return correctAnswersTotal;
     }
+
+    public ArrayList<Word> getWords() {
+        return words;
+    }
 }
 

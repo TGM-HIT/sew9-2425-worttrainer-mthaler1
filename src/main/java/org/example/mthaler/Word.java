@@ -1,5 +1,7 @@
 package org.example.mthaler;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -8,6 +10,10 @@ public class Word {
     private String imageURL;
     private int totalAnswers;
     private int correctAnswers;
+    @JsonIgnore
+    private int currentTotalAnswers = 0;
+    @JsonIgnore
+    private int currentCorrectAnswers = 0;
 
     public Word() {}
 
@@ -42,12 +48,22 @@ public class Word {
         return correctAnswers;
     }
 
+    public int getCurrentTotalAnswers() {
+        return currentTotalAnswers;
+    }
+
+    public int getCurrentCorrectAnswers() {
+        return currentCorrectAnswers;
+    }
+
     public void setTotalAnswers() {
         this.totalAnswers += 1;
+        this.currentTotalAnswers += 1;
     }
 
     public void setCorrectAnswers() {
         this.correctAnswers += 1;
+        this.currentCorrectAnswers += 1;
     }
 }
 
